@@ -1,22 +1,27 @@
 # Autor: Maria Clara
-# Projeto: Calculadora de IMC
+# Projeto: Interface Visual IMC
 
-print('======= Calculadora de IMC ========\n')
-peso = float(input('Digite seu peso (kg): '))
-altura = float(input('Digite sua altura (m): '))
-imc = peso / (altura * altura)
-print(f'Seu imc é: {imc:.2f}')
+# streamlit - criar sites
+import streamlit as st
 
-#estrutura condicional
-if imc <= 18.5:
-    print('Cuidado! Magreza')
-elif imc <= 25.0:
-    print('Parabéns!!! Saudável')  
-elif imc <= 30.0:
-    print('Alerta! você está com sobrepeso.')
-elif imc <= 35.0:
-    print('Cuidado! Obesidade Grau I')
-elif imc <= 40.0:
-    print('Muito Cuidado!! Obesidade Grau II')  
-else:
-    print('Alerta Máximo!!! Obesidade Grau III')   
+# Título da página
+st.title('Calculadora de IMC')
+
+# entrada de dados
+peso = st.number_input('Peso (kg)')
+altura = st.number_input('Altura (m)')
+
+# Botão com a ação de calcular e status
+if st.button('Calcular IMC'):
+    imc = peso / (altura ** 2)
+    st.success(f'Seu IMC é: {imc:.2f}')
+
+    # condicional para o IMC
+    if imc < 18.5:
+        st.warning('Abaixo do peso')
+    elif imc < 25.0:
+        st.success('Peso normal')
+    elif im < 30.0:
+        st.warning('Sobrepeso')
+    else:
+        st.error('Obesidade')
